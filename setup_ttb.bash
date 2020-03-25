@@ -1,4 +1,13 @@
 #!/bin/bash
+# DESCRIPTION       Installs & configures ROS for the Turtlebot
+#                   Intended to be run after installing Ubuntu on the target computer
+#
+# AUTHOR            Dave Niewinski <dniewinski@clearpathrobotics.com>
+#                   Chris Iverach-Brereton <civerachb@clearpathrobotics.com>
+#
+# USAGE             bash setup_ttb.bash
+#
+# NOTE              This script must _not_ be run as root as it modifies files in the user's home folder
 
 # check that we are _not_ running as root
 # running this script as root is _very_ bad and will break things
@@ -17,6 +26,7 @@ bash ./enable_kernel_sources.sh
 rm enable_kernel_sources.sh
 
 # add Intel's RealSense repository; otherwise we get problems installing librealsense
+# see: https://github.com/IntelRealSense/librealsense/blob/master/doc/distribution_linux.md#installing-the-packages
 sudo apt-key adv --keyserver keys.gnupg.net --recv-key F6E65AC044F831AC80A06380C8B3A55A6F3EFCDE || sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-key F6E65AC044F831AC80A06380C8B3A55A6F3EFCDE
 sudo add-apt-repository "deb http://realsense-hw-public.s3.amazonaws.com/Debian/apt-repo xenial main" -u
 
